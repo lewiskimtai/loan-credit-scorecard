@@ -55,7 +55,7 @@ if selection == 'Get Score':
 
     # when 'Predict' is clicked, make the prediction and store it
     if st.button("Predict"):
-        result = int(np.exp(get_predictions(CHK_ACCT=CHK_ACCT, DURATION=DURATION, HISTORY=HISTORY, SAV_ACCT=SAV_ACCT, EMPLOYMENT=EMPLOYMENT, REAL_ESTATE=REAL_ESTATE, PROP_UNKN_NONE=PROP_UNKN_NONE, AGE=AGE, OTHER_INSTALL=OTHER_INSTALL, OWN_RES=OWN_RES)))
+        result = get_predictions(CHK_ACCT=CHK_ACCT, DURATION=DURATION, HISTORY=HISTORY, SAV_ACCT=SAV_ACCT, EMPLOYMENT=EMPLOYMENT, REAL_ESTATE=REAL_ESTATE, PROP_UNKN_NONE=PROP_UNKN_NONE, AGE=AGE, OTHER_INSTALL=OTHER_INSTALL, OWN_RES=OWN_RES)
         st.success(f'Credit Rating: {result}')
         st.write('0 - No, 1 - Yes')
         # st.image('photos/phoness.jpg')
@@ -72,7 +72,7 @@ if selection == 'Exploratory Data Analysis':
     # Calculate the sum of 'AMOUNT' column
     total_amount = df['AMOUNT'].sum()
     # Print the sum with commas as thousands separators
-    st.write('{total_amount}')
+    st.write(total_amount)
 
     # Percentage of Good and Bad Creditors
     # Calculate value counts
