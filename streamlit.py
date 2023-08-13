@@ -29,7 +29,7 @@ st.sidebar.write('Predicting Loan Score Credits for new customers is important t
 
 # Get Price Functionality
 if selection == 'Get Score':
-    col1, col2 = st.columns(2)
+    col1 = st.columns(2)
     with col1:
         # st.image('photos/phones.jpg')
         st.title('Enter customer details')
@@ -49,8 +49,7 @@ if selection == 'Get Score':
             st.success(f'Price of Phone: {result} UGX')
             # st.image('photos/phoness.jpg')
 
-    with col2:
-        # st.image('photos/phonesss.jpg')
+
         
 # Exploratory Data Analysis Functionality
 if selection == 'Exploratory Data Analysis':    
