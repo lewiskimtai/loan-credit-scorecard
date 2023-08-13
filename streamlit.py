@@ -51,10 +51,41 @@ def get_predictions(CHK_ACCT, DURATION, HISTORY, SAV_ACCT, EMPLOYMENT, REAL_ESTA
 # Side Bar
 # st.sidebar.image('photos/logo.png')
 st.sidebar.header("Loan Credit Score")
-menu = ['Get Score','Exploratory Data Analysis','About']
+menu = ['Exploratory Data Analysis', 'Get Score','About']
 selection = st.sidebar.selectbox("", menu)
 
 st.sidebar.write('Financial institutions find it crucial to forecast the likelihood of loan repayment for new clients in order to anticipate the potential for loan default and mitigate the expenses associated with borrowers who may not fulfill their repayment obligations.')
+
+
+# Exploratory Data Analysis Functionality
+if selection == 'Exploratory Data Analysis':    
+    df = pd.read_excel(url)
+    st.markdown('Display data')
+    st.table(df.head())
+
+    # Total Amount Disbursed
+    # Calculate the sum of 'AMOUNT' column
+    total_amount = df['AMOUNT'].sum()
+    
+    # Print the sum with commas as thousands separators
+    st.write('Total Amount Disbursed')
+    st.write(total_amount)
+
+    # Percentage of Good and Bad Creditors
+    # Calculate value counts
+    response_counts = df['RESPONSE'].value_counts()
+    # Create the pie chart using Plotly Express
+    fig = px.pie(response_counts, names=response_counts.index, values=response_counts.values, title='PIE CHART SHOWING GOOD & BAD DEBTORS')
+    # Display the pie chart using Streamlit
+    st.plotly_chart(fig, use_container_width=True)
+
+    # Amount Disbursed in relation to Response
+    response_amount_sum = df.groupby('RESPONSE')['AMOUNT'].sum()
+    # Print the total amount for each response with commas
+    st.write('Amount Disbursed in relation to Response')
+    st.write(response_amount_sum)
+
+
 
 # Get Price Functionality
 if selection == 'Get Score':
@@ -90,36 +121,7 @@ if selection == 'Get Score':
         # st.image('photos/phoness.jpg')
 
 
-        
-# Exploratory Data Analysis Functionality
-if selection == 'Exploratory Data Analysis':    
-    df = pd.read_excel(url)
-    st.markdown('Display data')
-    st.table(df.head())
-
-    # Total Amount Disbursed
-    # Calculate the sum of 'AMOUNT' column
-    total_amount = df['AMOUNT'].sum()
     
-    # Print the sum with commas as thousands separators
-    st.write('Total Amount Disbursed')
-    st.write(total_amount)
-
-    # Percentage of Good and Bad Creditors
-    # Calculate value counts
-    response_counts = df['RESPONSE'].value_counts()
-    # Create the pie chart using Plotly Express
-    fig = px.pie(response_counts, names=response_counts.index, values=response_counts.values, title='PIE CHART SHOWING GOOD & BAD DEBTORS')
-    # Display the pie chart using Streamlit
-    st.plotly_chart(fig, use_container_width=True)
-
-    # Amount Disbursed in relation to Response
-    response_amount_sum = df.groupby('RESPONSE')['AMOUNT'].sum()
-    # Print the total amount for each response with commas
-    st.write('Amount Disbursed in relation to Response')
-    st.write(response_amount_sum)
-
-
 # adding html  Template
 
 footer_temp = """
