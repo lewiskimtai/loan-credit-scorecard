@@ -29,25 +29,24 @@ st.sidebar.write('Predicting Loan Score Credits for new customers is important t
 
 # Get Price Functionality
 if selection == 'Get Score':
-    col1 = st.columns(2)
-    with col1:
-        # st.image('photos/phones.jpg')
-        st.title('Enter customer details')
-        # st.image('photos/specs.png')
-        brand = st.selectbox('Select Brand', ['', 'Nokia', 'Samsung', 'Infinix', 'Tecno', 'Redmi', 'Itel', 'Vivo', 'Hisence', 'Oppo', 'Motorola', 'Realme'], index=0)
-        screen_size = st.number_input("Enter screen_size (Size of the screen)")
-        ram = st.number_input("Enter RAM capacity (RAM defines how fast the phone is)")
-        rom = st.number_input("Enter ROM capacity (ROM defines memory storage)")
-        mp = st.number_input("Enter Megapixels (Defines the resolution and quality of photos taken)")
-        battery = st.number_input("Enter battery capacity (Defines battery life)")
+    st.columns(2)    
+    # st.image('photos/phones.jpg')
+    st.title('Enter customer details')
+    # st.image('photos/specs.png')
+    brand = st.selectbox('Select Brand', ['', 'Nokia', 'Samsung', 'Infinix', 'Tecno', 'Redmi', 'Itel', 'Vivo', 'Hisence', 'Oppo', 'Motorola', 'Realme'], index=0)
+    screen_size = st.number_input("Enter screen_size (Size of the screen)")
+    ram = st.number_input("Enter RAM capacity (RAM defines how fast the phone is)")
+    rom = st.number_input("Enter ROM capacity (ROM defines memory storage)")
+    mp = st.number_input("Enter Megapixels (Defines the resolution and quality of photos taken)")
+    battery = st.number_input("Enter battery capacity (Defines battery life)")
 
-        result = ""
+    result = ""
 
-        # when 'Predict' is clicked, make the prediction and store it
-        if st.button("Predict"):
-            result = int(np.exp(get_predictions(brand=brand, screen_size=screen_size, ram=ram, rom=rom, mp=mp, battery=battery)))
-            st.success(f'Price of Phone: {result} UGX')
-            # st.image('photos/phoness.jpg')
+    # when 'Predict' is clicked, make the prediction and store it
+    if st.button("Predict"):
+        result = int(np.exp(get_predictions(brand=brand, screen_size=screen_size, ram=ram, rom=rom, mp=mp, battery=battery)))
+        st.success(f'Price of Phone: {result} UGX')
+        # st.image('photos/phoness.jpg')
 
 
         
