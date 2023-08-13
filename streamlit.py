@@ -64,7 +64,7 @@ if selection == 'Get Score':
         
 # Exploratory Data Analysis Functionality
 if selection == 'Exploratory Data Analysis':    
-    df = pd.read_excel(url, encoding="ISO-8859-1", low_memory=False)
+    df = pd.read_excel(url)
     st.markdown('Display data')
     st.table(df.head())
 
