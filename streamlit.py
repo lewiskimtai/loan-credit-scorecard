@@ -99,7 +99,7 @@ if selection == 'Exploratory Data Analysis':
 
     # Total Amount Disbursed
     # Calculate the sum of 'AMOUNT' column
-    total_amount = df['AMOUNT'].sum().apply('{:,}'.format)
+    total_amount = df['AMOUNT'].sum()
     
     # Print the sum with commas as thousands separators
     st.write('Total Amount Disbursed')
@@ -116,8 +116,8 @@ if selection == 'Exploratory Data Analysis':
     # Amount Disbursed in relation to Response
     response_amount_sum = df.groupby('RESPONSE')['AMOUNT'].sum()
     # Print the total amount for each response with commas
-    print(response_amount_sum.apply('{:,}'.format))
-    st.write('{response_amount_sum}')
+    st.write('Amount Disbursed in relation to Response')
+    st.write(response_amount_sum)
 
 
 # adding html  Template
