@@ -20,5 +20,5 @@ def predict(CHK_ACCT, DURATION,	HISTORY, SAV_ACCT, EMPLOYMENT, REAL_ESTATE,	PROP
     predictions = np.exp(loaded_model.predict(data)) 
     return {'prediction': int(predictions[0])}
 
-# if __name__ == '__main__':
-#     uvicorn.run(app, host='127.0.0.1', port=8000)
+if __name__ == '__main__':
+     uvicorn.run(app, host='127.0.0.1', port=8000)
