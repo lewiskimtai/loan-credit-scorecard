@@ -40,7 +40,7 @@ def get_predictions(CHK_ACCT, DURATION, HISTORY, SAV_ACCT, EMPLOYMENT, REAL_ESTA
                 st.error("Error decoding JSON:", e)
                 return None
         else:
-            st.error("Request was not successful. Status code:", response.status_code)
+            st.error("Request was not successful. Status code: {}".format(response.status_code))
             return None
         
     except requests.RequestException as e:
