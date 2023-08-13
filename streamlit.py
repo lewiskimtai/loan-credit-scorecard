@@ -33,8 +33,8 @@ if selection == 'Get Score':
     # st.image('photos/phones.jpg')
     st.title('Enter customer details')
     # st.image('photos/specs.png')
-    CHK_ACCT = st.number_input('''Customer account status.
-                                0 for account status with < 0 DM, 1 for account status with 0 < ...< 200 DM, 2 for account status with => 200 DM, 3 for no checking account', min_value=0 , max_value=3''') 
+    CHK_ACCT = st.number_input('Customer account status.', min_value=0 , max_value=3)
+    st.write(' 0 for account status with < 0 DM, 1 for account status with 0 < ...< 200 DM, 2 for account status with => 200 DM, 3 for no checking account') 
     DURATION = st.number_input('Customer duration of credit in months.')
     HISTORY = st.number_input('Customer credit history. \n0 for no credits taken, 1 for all credits at this bank paid back duly, 2 for existing credits paid back duly till now, 3 for delay in paying off in the past, 4 for critical account', min_value=0 , max_value=4)
     SAV_ACCT = st.number_input('Customer average balance in savings account. \n0 for acc avg bal < 100 DM, 1 for acc avg bal 100<= ... <  500 DM, 2 for acc avg bal 500<= ... < 1000 DM, 3 for acc avg bal =>1000 DM, 4 for unknown/ no savings account', min_value=0 , max_value=4)
