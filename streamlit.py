@@ -6,18 +6,35 @@ import numpy as np
 import plotly.express as px
 import streamlit.components.v1 as components
 import requests
+from urllib.parse import urlencode
 
 # Dataset
 url = "Loan.xlsx"
 
 # Prediction Function connected to the FAST API
-def get_predictions(CHK_ACCT, DURATION,	HISTORY, SAV_ACCT, EMPLOYMENT, REAL_ESTATE,	PROP_UNKN_NONE,	AGE, OTHER_INSTALL,	OWN_RES):
-    url = 'https://loan-credit-scorecard-19e6be78fd91.herokuapp.com/predict?CHK_ACCT={CHK_ACCT}&DURATION={DURATION}&HISTORY={HISTORY}&SAV_ACCT={SAV_ACCT}&EMPLOYMENT={EMPLOYMENT}&REAL_ESTATE={REAL_ESTATE}&PROP_UNKN_NONE={PROP_UNKN_NONE}&AGE={AGE}&OTHER_INSTALL={OTHER_INSTALL}&OWN_RES={OWN_RES}' \
-        .format(CHK_ACCT=CHK_ACCT, DURATION=DURATION, HISTORY=HISTORY, SAV_ACCT=SAV_ACCT, EMPLOYMENT=EMPLOYMENT, REAL_ESTATE=REAL_ESTATE, PROP_UNKN_NONE=PROP_UNKN_NONE, AGE=AGE, OTHER_INSTALL=OTHER_INSTALL, OWN_RES=OWN_RES)
+def get_predictions(CHK_ACCT, DURATION, HISTORY, SAV_ACCT, EMPLOYMENT, REAL_ESTATE, PROP_UNKN_NONE, AGE, OTHER_INSTALL, OWN_RES):
+    base_url = 'https://loan-credit-scorecard-19e6be78fd91.herokuapp.com/predict'
+    params = {
+        'CHK_ACCT': CHK_ACCT,
+        'DURATION': DURATION,
+        'HISTORY': HISTORY,
+        'SAV_ACCT': SAV_ACCT,
+        'EMPLOYMENT': EMPLOYMENT,
+        'REAL_ESTATE': REAL_ESTATE,
+        'PROP_UNKN_NONE': PROP_UNKN_NONE,
+        'AGE': AGE,
+        'OTHER_INSTALL': OTHER_INSTALL,
+        'OWN_RES': OWN_RES
+    }
+
+    # Construct the complete URL with encoded query parameters
+    url = f"{base_url}?{urlencode(params)}"
+    
     response = requests.post(url)
     json_response = response.json()
-    score=json_response['prediction']
+    score = json_response['prediction']
     return score
+
 
 # Side Bar
 # st.sidebar.image('photos/logo.png')
