@@ -33,13 +33,16 @@ if selection == 'Get Score':
     # st.image('photos/phones.jpg')
     st.title('Enter customer details')
     # st.image('photos/specs.png')
-    brand = st.selectbox('Select Brand', ['', 'Nokia', 'Samsung', 'Infinix', 'Tecno', 'Redmi', 'Itel', 'Vivo', 'Hisence', 'Oppo', 'Motorola', 'Realme'], index=0)
-    screen_size = st.number_input("Enter screen_size (Size of the screen)")
-    ram = st.number_input("Enter RAM capacity (RAM defines how fast the phone is)")
-    rom = st.number_input("Enter ROM capacity (ROM defines memory storage)")
-    mp = st.number_input("Enter Megapixels (Defines the resolution and quality of photos taken)")
-    battery = st.number_input("Enter battery capacity (Defines battery life)")
-
+    CHK_ACCT = st.number_input('Customer account status. \n0 for account status with < 0 DM, 1 for account status with 0 < ...< 200 DM, 2 for account status with => 200 DM, 3 for no checking account', min_value=0 , max_value=3) 
+    DURATION = st.number_input('Customer duration of credit in months.')
+    HISTORY = st.number_input('Customer credit history. \n0 for no credits taken, 1 for all credits at this bank paid back duly, 2 for existing credits paid back duly till now, 3 for delay in paying off in the past, 4 for critical account', min_value=0 , max_value=4)
+    SAV_ACCT = st.number_input('Customer average balance in savings account. \n0 for acc avg bal < 100 DM, 1 for acc avg bal 100<= ... <  500 DM, 2 for acc avg bal 500<= ... < 1000 DM, 3 for acc avg bal =>1000 DM, 4 for unknown/ no savings account', min_value=0 , max_value=4)
+    EMPLOYMENT = st.number_input('Customer employment period. \n0 for unemployed, 1 for < 1 yr, 2 for 1 <= ... < 4 yrs, 3 for 4 <=... < 7 yrs, 4 for >= 7 yrs', min_value=0 , max_value=4)
+    REAL_ESTATE = st.number_input('Customer owns real estate. \n0 for No, 1 for Yes', min_value=0 , max_value=1)
+    PROP_UNKN_NONE = st.number_input('Customer owns no property (or unknown). \n0 for No, 1 for Yes', min_value=0 , max_value=1)
+    AGE = st.number_input('Customers age in years.')
+    OTHER_INSTALL = st.number_input('Customer has other installment plan credit. \n0 for No, 1 for Yes', min_value=0 , max_value=1)
+    OWN_RES = st.number_input('Customer owns residence. \n0 for No, 1 for Yes', min_value=0 , max_value=1)
     result = ""
 
     # when 'Predict' is clicked, make the prediction and store it

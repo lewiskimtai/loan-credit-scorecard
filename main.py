@@ -5,7 +5,7 @@ import pickle
 from fastapi import FastAPI
 import uvicorn
 
-# 2. Create the app object
+# 2. Create the Firstapp object
 app = FastAPI()
 
 #. Load Model
