@@ -20,8 +20,8 @@ def get_predictions(CHK_ACCT, DURATION,	HISTORY, SAV_ACCT, EMPLOYMENT, REAL_ESTA
     return score
 
 # Side Bar
-st.sidebar.image('photos/logo.png')
-st.sidebar.header("Phone Price Prediction")
+# st.sidebar.image('photos/logo.png')
+# st.sidebar.header("Phone Price Prediction")
 menu = ['Get Score','Exploratory Data Analysis','About']
 selection = st.sidebar.selectbox("", menu)
 
@@ -31,9 +31,9 @@ st.sidebar.write('Predicting Loan Score Credits for new customers is important t
 if selection == 'Get Score':
     col1, col2 = st.columns(2)
     with col1:
-        st.image('photos/phones.jpg')
+        # st.image('photos/phones.jpg')
         st.title('Enter customer details')
-        st.image('photos/specs.png')
+        # st.image('photos/specs.png')
         brand = st.selectbox('Select Brand', ['', 'Nokia', 'Samsung', 'Infinix', 'Tecno', 'Redmi', 'Itel', 'Vivo', 'Hisence', 'Oppo', 'Motorola', 'Realme'], index=0)
         screen_size = st.number_input("Enter screen_size (Size of the screen)")
         ram = st.number_input("Enter RAM capacity (RAM defines how fast the phone is)")
@@ -47,10 +47,10 @@ if selection == 'Get Score':
         if st.button("Predict"):
             result = int(np.exp(get_predictions(brand=brand, screen_size=screen_size, ram=ram, rom=rom, mp=mp, battery=battery)))
             st.success(f'Price of Phone: {result} UGX')
-            st.image('photos/phoness.jpg')
+            # st.image('photos/phoness.jpg')
 
     with col2:
-        st.image('photos/phonesss.jpg')
+        # st.image('photos/phonesss.jpg')
         
 # Exploratory Data Analysis Functionality
 if selection == 'Exploratory Data Analysis':    
