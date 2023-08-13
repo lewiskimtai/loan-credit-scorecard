@@ -99,10 +99,11 @@ if selection == 'Exploratory Data Analysis':
 
     # Total Amount Disbursed
     # Calculate the sum of 'AMOUNT' column
-    total_amount = df['AMOUNT'].sum()
+    total_amount = df['AMOUNT'].sum().apply('{:,}'.format)
+    
     # Print the sum with commas as thousands separators
     st.write('Total Amount Disbursed')
-    st.write(total_amount.apply('{:,}'.format))
+    st.write(total_amount)
 
     # Percentage of Good and Bad Creditors
     # Calculate value counts
