@@ -7,6 +7,7 @@ import plotly.express as px
 import streamlit.components.v1 as components
 import requests
 from urllib.parse import urlencode
+from json.decoder import JSONDecodeError
 
 # Dataset
 url = "Loan.xlsx"
@@ -26,14 +27,25 @@ def get_predictions(CHK_ACCT, DURATION, HISTORY, SAV_ACCT, EMPLOYMENT, REAL_ESTA
         'OTHER_INSTALL': OTHER_INSTALL,
         'OWN_RES': OWN_RES
     }
-
-    # Construct the complete URL with encoded query parameters
-    url = f"{base_url}?{urlencode(params)}"
     
-    response = requests.post(url)
-    json_response = response.json()
-    score = json_response['prediction']
-    return score
+    try:
+        response = requests.post(base_url, json=params)
+        
+        if response.status_code == 200:
+            try:
+                json_response = response.json()
+                score = json_response['prediction']
+                return score
+            except JSONDecodeError as e:
+                st.error("Error decoding JSON:", e)
+                return None
+        else:
+            st.error("Request was not successful. Status code:", response.status_code)
+            return None
+        
+    except requests.RequestException as e:
+        st.error("Request error:", e)
+        return None
 
 
 # Side Bar
@@ -72,9 +84,9 @@ if selection == 'Get Score':
 
     # when 'Predict' is clicked, make the prediction and store it
     if st.button("Predict"):
-        result = int(np.exp(get_predictions(CHK_ACCT=CHK_ACCT, DURATION=DURATION, HISTORY=HISTORY, SAV_ACCT=SAV_ACCT, EMPLOYMENT=EMPLOYMENT, REAL_ESTATE=REAL_ESTATE, PROP_UNKN_NONE=PROP_UNKN_NONE, AGE=AGE, OTHER_INSTALL=OTHER_INSTALL, OWN_RES=OWN_RES)))
-        st.success(result)
-        st.write('0 - No, 1 - Yes')
+        prediction = get_predictions(CHK_ACCT, DURATION, HISTORY, SAV_ACCT, EMPLOYMENT, REAL_ESTATE, PROP_UNKN_NONE, AGE, OTHER_INSTALL, OWN_RES)
+    if prediction is not None:
+        st.success(f"Predicted Loan Credit Score: {prediction}")
         # st.image('photos/phoness.jpg')
 
 
